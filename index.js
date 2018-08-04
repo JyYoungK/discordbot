@@ -1,6 +1,4 @@
 const Discord = require("discord.js");
-
-const TOKEN = "NDc0NzY3Mjc5NzEyODk0OTc4.DkVfIQ.N5ehTcCM5G-Lgi5v5jrQAZixsNQ";
 const PREFIX = "askbot: ";
 //const roleChannel = bot.channels.get("name", "welcome")
 
