@@ -25,24 +25,6 @@ bot.on("guildMemberAdd", function(member) {
 //  member.addRole(member.guild.roles.find("name", "Unranked"));
 });
 
-/*bot.on("message", function(message, channel){
-  if (channel.id == ("testing")) {
-    //TextChannel channel = "testing" (I tried this too)
-    if (message.content.startsWith('bot:')) {
-    message.channel.send(message.author.toString() + " Hello!");
-    message.guild.channels.find("name", "testing").send("blabla");
-  }}*/
-  /*TextChannel channel = "testing";
-  if (channel = "testing") {
-
-    if (message.content.startsWith('!hi')) {
-    message.channel.send(message.author.toString() + " You have successfully changed your rank to Unranked!");
-    ﻿}
-
-    if (message.content.startsWith('!Unranked') || message.content.startsWith('!unranked')) {
-    message.channel.send(message.author.toString() + " You have successfully changed your rank to Unranked!");
-    message.member.addRole(message.member.guild.roles.find("name", "Unranked"));﻿}}*/
-
 bot.on("message", function(message){
 
   if (message.author.equals(bot.user)) return;
