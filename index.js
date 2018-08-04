@@ -1,6 +1,11 @@
 const Discord = require("discord.js");
+const client = new Discord.Client();
 const PREFIX = "askbot: ";
 //const roleChannel = bot.channels.get("name", "welcome")
+
+client.on('ready', () => {
+    console.log('I am ready!');
+});
 
 var fortunes = [
   "Yes",
@@ -121,4 +126,4 @@ bot.on("message", function(message){
 
 });
 
-bot.login(TOKEN);
+client.login(process.env.BOT_TOKEN);
