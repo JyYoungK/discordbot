@@ -105,5 +105,6 @@ client.on("message", function(message){
         message.channel.send("Invalide Command");
     }
 
-})
+}).listen(process.env.PORT || 5000)
+
 client.login(process.env.BOT_TOKEN);
