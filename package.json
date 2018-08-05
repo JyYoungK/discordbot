@@ -6,11 +6,8 @@
   "scripts": {
     "start": "node bot.js"
   },
-  "engines": {
-   "node": "5.0.0",
-   "npm": "4.6.1"
-   },
-  "author": "Johnny Kang",
+
+  "author": "Junyoung Kang",
   "dependencies": {
     "discord.js": "^11.3.2",
     "save": "^2.3.2"
