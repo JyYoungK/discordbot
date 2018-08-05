@@ -30,7 +30,7 @@ client.on("guildMemberAdd", function(member) {
 
 client.on("message", function(message){
 
-  if (message.author.equals(bot.user)) return;
+  if (message.author.equals(client.user)) return;
 
   if (message.content.startsWith('!Bronze') || message.content.startsWith('!bronze')) {
   message.channel.send(message.author.toString() + " You have successfully changed your rank to Bronze!");
