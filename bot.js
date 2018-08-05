@@ -18,19 +18,18 @@ var fortunes = [
   "Maybe"
 ]
 
-var bot = new Discord.Client();
 
-bot.on("ready", function() {
+client.on("ready", function() {
    console.log("Ready");
 });
 
-bot.on("guildMemberAdd", function(member) {
+client.on("guildMemberAdd", function(member) {
   member.guild.channels.find("name", "lets-talk").send(" Welcome to League Discord Channel "+ member.toString())
  + '. Your role has been automatically set to unranked. Type: "askbot: info" to seek help!'
 //  member.addRole(member.guild.roles.find("name", "Unranked"));
 });
 
-bot.on("message", function(message){
+client.on("message", function(message){
 
   if (message.author.equals(bot.user)) return;
 
