@@ -18,10 +18,6 @@ var fortunes = [
   "Maybe"
 ]
 
-client.on("ready", function() {
-   console.log("Ready");
-});
-
 client.on("guildMemberAdd", function(member) {
   member.guild.channels.find("name", "lets-talk").send(" Welcome to League Discord Channel "+ member.toString())
  + '. Your role has been automatically set to unranked. Type: "askbot: info" to seek help!'
