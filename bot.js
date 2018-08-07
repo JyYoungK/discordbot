@@ -19,7 +19,7 @@ var fortunes = [
 ]
 
 client.on("guildMemberAdd", function(member) {
-  member.guild.channels.find("name", "lets-talk").send(" Welcome to League Discord Channel "+ member.toString()
+  member.guild.channels.find("name", "welcome").send(" Welcome to League Discord Channel "+ member.toString()
    + ". Your role has been automatically set to unranked. Type: `askbot: info` to seek help!")
 //  member.addRole(member.guild.roles.find("name", "Unranked"));
 });
