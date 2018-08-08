@@ -4,7 +4,7 @@ const PREFIX = "askbot: ";
 
 client.on('ready', () => {
     console.log('I am ready!');
-    client.user.setActivity("to become a better bot", {type: "STUDYING"});
+    client.user.setActivity("How to become a better bot", {type: "WATCHING"});
 });
 
 client.on('message', message => {
