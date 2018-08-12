@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const botconfig = require("botconfig.json");
+const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const PREFIX = "askbot: ";
 bot.commands = new Discord.Collection();
