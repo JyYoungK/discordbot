@@ -4,6 +4,7 @@ const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const PREFIX = "askbot: ";
 bot.commands = new Discord.Collection();
+let cdseconds = 5;
 
 fs.readdir("./commands/", (err, files) => {
 
