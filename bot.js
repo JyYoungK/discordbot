@@ -58,7 +58,7 @@ bot.on("message", async message => {
           break;
 
       case "roles":
-           message.channel.send('Go to "demand-new-title" and type your Rank position after `!`. For example if you are in Silver, type `!Silver`' );
+           message.channel.send('Go to "demand-new-title" and type your Rank position after `!title`. For example if you are in Silver, type `!title Silver`' );
            break;
 
       case "ask":
