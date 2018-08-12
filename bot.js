@@ -4,9 +4,6 @@ const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const PREFIX = "askbot: ";
 bot.commands = new Discord.Collection();
-let purple = botconfig.purple;
-let cdseconds = 5;
-let cooldown = new Set();
 
 fs.readdir("./commands/", (err, files) => {
 
@@ -88,11 +85,7 @@ bot.on("message", async message => {
 
      // default:
          // message.channel.send("Invalide Command");
-      }
-
-  setTimeout(() => {
-    cooldown.delete(message.author.id)
-  }, cdseconds * 1000)
+   
 });
 
 bot.login(process.env.BOT_TOKEN);
