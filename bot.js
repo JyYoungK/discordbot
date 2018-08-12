@@ -4,6 +4,7 @@ const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const PREFIX = "askbot: ";
 bot.commands = new Discord.Collection();
+let purple = botconfig.purple;
 let cdseconds = 5;
 let cooldown = new Set();
 
@@ -75,12 +76,9 @@ bot.on("message", async message => {
               .addField("askbot: info", "Shows all the functions I can do!", true)
               .addField("askbot: noticeme", "I will give you attention!", true)
               .addField("askbot: roles", "I will tell you how to change your role!", true)
-              //.addField("askbot: ", "Test Description", true)
-              //.setColor(0x00FFFF)
               .setColor(0x00FFFF)
               .setFooter("This message was pretty cool right?")
               .setThumbnail(message.author.avatarURL)
-            //  .setDesciption("Hello, this is an awesome embed");
             message.channel.sendEmbed(embed);
             break;
 
