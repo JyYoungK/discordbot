@@ -82,6 +82,7 @@ bot.on("message", async message => {
       case "noticeme":
           message.channel.send(message.author.toString() + " Sorry! I missed you!");
           break;
+    }
 
      // default:
          // message.channel.send("Invalide Command");
