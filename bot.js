@@ -53,9 +53,6 @@ bot.on("message", async message => {
   var args2 = message.content.substring(PREFIX.length).split(" ");
 
     switch (args2[0].toLowerCase()) {
-      case "help":
-          message.channel.send("Hi! How can I help you?");
-          break;
 
       case "roles":
            message.channel.send('Go to "demand-new-title" and type your Rank position after `!title`. For example if you are in Silver, type `!title Silver`' );
