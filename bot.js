@@ -39,10 +39,10 @@ bot.on("guildMemberAdd", async member => {
    ", becoming a VIP and you can do it too! PHEW :laughing: Well, I can answer all these questions for you! All you have to do is " +
    "Type: `askbot: info` to seek help" + " in the 'lets-talk' channel. If you have any " +
  "other questions :thinking: , feel free to ask anyone or Admin! Okay enough talking, go ahead and invite your friends over and start gaming! " +
- "Don't forget to say hi and add me on League if you do play :) - `Chocolate Rose` Have fun!!! :stuck_out_tongue_closed_eyes: ");
+ "Don't forget to say hi and add me on League if you do play :) - `Chocolate Rose` See you around in the channel, have fun!!! :stuck_out_tongue_closed_eyes: ");
 
-  member.guild.channels.find("name", "welcome").send(" Welcome to League Discord Channel "+ member.toString()
-   + ". Your role has been automatically set to unranked. Type: `askbot: info` to seek help!")
+  member.guild.channels.find("name", "welcome").send(" Hey everyone please welcome "+ member.toString()
+   + " for joining our channel! It's nice to see you here. Have a good time! :) ")
 });
 
 bot.on("message", async message => {
@@ -83,7 +83,7 @@ bot.on("message", async message => {
               //.addField("askbot: EXP", "Explains you how to earn EXP", true)
               //.addField("askbot: VIP", "Explains you on how to become a VIP member", true)
               .addField("askbot: reports", "Explains you about the report system", true)
-              .setColor(0x00FFFF)
+              .setColor(0xff5700)
               .setFooter("This message will be deleted in 1 minute")
               .setThumbnail(message.author.avatarURL)
             message.channel.sendEmbed(embed).then(msg => {msg.delete(60000)});
