@@ -41,7 +41,7 @@ bot.on("guildMemberAdd", async member => {
  "other questions :thinking: , feel free to ask anyone or Admin! Okay enough talking, go ahead and invite your friends over and start gaming! " +
  "Don't forget to say hi and add me on League if you do play :) - `Chocolate Rose` See you around in the channel, have fun!!! :stuck_out_tongue_closed_eyes: ");
 
-  member.guild.channels.find("name", "welcome").send(" Hey everyone please welcome "+ member.toString()
+  member.guild.channels.find("name", "welcome").send(" Hey everyone! Please welcome "+ member.toString()
    + " for joining our channel! It's nice to see you here. Have a good time! :) ")
 });
 
