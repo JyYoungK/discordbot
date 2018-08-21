@@ -32,7 +32,15 @@ bot.on('message', message => {
   	}
 });
 
-bot.on("guildMemberAdd", function(member) {
+bot.on("guildMemberAdd", async member => {
+  await member.send(" Welcome to Rose Garden "+ member.toString() +  " :heart_eyes:"
+   + ". First of all, there are a lot of things going on here. It's like vines and roses! :rose: " +
+   "In this channel you can witness people earning EXP, changing roles, playing custom games" +
+   ", becoming a VIP and you can do it too! PHEW :laughing: Well, I can answer all these questions for you! All you have to do is " +
+   "Type: `askbot: info` to seek help" + " in the 'lets-talk' channel. If you have any " +
+ "other questions :thinking: , feel free to ask anyone or Admin! Okay enough talking, go ahead and invite your friends over and start gaming! " +
+ "Don't forget to say hi and add me on League if you do play :) - `Chocolate Rose` Have fun!!! :stuck_out_tongue_closed_eyes: ");
+
   member.guild.channels.find("name", "welcome").send(" Welcome to League Discord Channel "+ member.toString()
    + ". Your role has been automatically set to unranked. Type: `askbot: info` to seek help!")
 });
@@ -40,8 +48,10 @@ bot.on("guildMemberAdd", function(member) {
 bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
-  if (message.content == "Hello" || message.content == "hi" || message.content == "hello" || message.content == "Hi") {
+  if (message.content == "Hello".toLowerCase() || message.content == "Hi".toLowerCase()) {
     message.channel.send("Hi there! I am a bot! :)")};
+  if (message.content == "How are you".toLowerCase() || message.content == "how are u".toLowerCase()) {
+    message.channel.send("Well I am a bot, so I am always happy! :)")};
 
   let prefix = botconfig.prefix;
   let messageArray = message.content.split(" ");
@@ -55,7 +65,7 @@ bot.on("message", async message => {
     switch (args2[0].toLowerCase()) {
 
       case "roles":
-           message.channel.send('Go to "demand-new-title" and type your Rank position after `!title`. For example if you are in Silver, type `!title Silver`' );
+           message.channel.send('Go to "demand-new-title" and type your Rank position after `!title`. For example if you are in Silver, type `!title Silver`' ).then(msg => {msg.delete(60000)});
            break;
 
       case "ask":
@@ -69,12 +79,14 @@ bot.on("message", async message => {
             var embed = new Discord.RichEmbed()
               .addField("askbot: info", "Shows all the functions I can do!", true)
               .addField("askbot: noticeme", "I will give you attention!!", true)
-              .addField("askbot: roles", "Tells you how to change your role!", true)
+              .addField("askbot: roles", "Explains you how to change your role!", true)
+              //.addField("askbot: EXP", "Explains you how to earn EXP", true)
+              //.addField("askbot: VIP", "Explains you on how to become a VIP member", true)
               .addField("askbot: reports", "Explains you about the report system", true)
-              .setColor(0xfc6400)
-              .setFooter("This message was pretty cool right?")
+              .setColor(0x00FFFF)
+              .setFooter("This message will be deleted in 1 minute")
               .setThumbnail(message.author.avatarURL)
-            message.channel.sendEmbed(embed);
+            message.channel.sendEmbed(embed).then(msg => {msg.delete(60000)});
             break;
 
       case "noticeme":
