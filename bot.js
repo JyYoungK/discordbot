@@ -74,8 +74,8 @@ bot.on("message", async message => {
           break;
 
       case "info":
-            message.channel.send("Hi! I'm a programmed bot by Chocolate Rose");
-            message.channel.send("Here are useful functions you can ask me");
+            message.channel.send("Hi! I'm a programmed bot by Chocolate Rose").then(msg => {msg.delete(60000)});
+            message.channel.send("Here are useful functions you can ask me").then(msg => {msg.delete(60000)});
             var embed = new Discord.RichEmbed()
               .addField("askbot: info", "Shows all the functions I can do!", true)
               .addField("askbot: noticeme", "I will give you attention!!", true)
