@@ -68,9 +68,10 @@ bot.on("message", async message => {
             message.channel.send("Here are useful functions you can ask me");
             var embed = new Discord.RichEmbed()
               .addField("askbot: info", "Shows all the functions I can do!", true)
-              .addField("askbot: noticeme", "I will give you attention!", true)
-              .addField("askbot: roles", "I will tell you how to change your role!", true)
-              .setColor(0xd36700)
+              .addField("askbot: noticeme", "I will give you attention!!", true)
+              .addField("askbot: roles", "Tells you how to change your role!", true)
+              .addField("askbot: reports", "Explains you about the report system", true)
+              .setColor(0x00FFFF)
               .setFooter("This message was pretty cool right?")
               .setThumbnail(message.author.avatarURL)
             message.channel.sendEmbed(embed);
