@@ -71,7 +71,7 @@ bot.on("message", async message => {
               .addField("askbot: noticeme", "I will give you attention!!", true)
               .addField("askbot: roles", "Tells you how to change your role!", true)
               .addField("askbot: reports", "Explains you about the report system", true)
-              .setColor(0x00FFFF)
+              .setColor(0xfc6400)
               .setFooter("This message was pretty cool right?")
               .setThumbnail(message.author.avatarURL)
             message.channel.sendEmbed(embed);
