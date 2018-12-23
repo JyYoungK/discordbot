@@ -86,7 +86,7 @@ bot.on("message", async message => {
               .setColor(0xff5700)
               .setFooter("This message will be deleted in 1 minute")
               .setThumbnail(message.author.avatarURL)
-            message.channel.sendEmbed(embed).then(msg => {msg.delete(60000)});
+            message.channel.send(embed).then(msg => {msg.delete(60000)});
             break;
 
       case "noticeme":
