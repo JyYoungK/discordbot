@@ -89,7 +89,7 @@ bot.on("message", async message => {
     switch (args2[0].toLowerCase()) {
 
       case "roles":
-           message.channel.send('Go to "service" and type your Rank position after `!title`. For example if you are in Silver, type `!title Silver`' ).then(msg => {msg.delete(60000)});
+           message.channel.send('Go to "service" and give yourself a reaction to appropriate position rank`' ).then(msg => {msg.delete(60000)});
            break;
 
       case "ask":
