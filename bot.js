@@ -36,8 +36,8 @@ bot.on('message', message => {
 });
 
 bot.on("guildMemberAdd", async member => {
-  await member.send(" Welcome to Rose Garden "+ member.toString() +  " :heart_eyes:"
-   + ". First thing you should do is to go to `https://discord.gg/EJYywfY` to claim your role! It will be very simple to do it. " + "If you have any questions, ask `Chocolate Rose`! " +
+  await member.send(" Welcome to Rose Garden :rose: "+ member.toString() +  " :heart_eyes:"
+   + ". First thing you should do is to go to `https://discord.gg/EJYywfY` to claim your role! It will be very simple to do it. " + "If you have any questions, ask 'Chocolate Rose'! " +
  " See you around in the channel, have fun!!! :stuck_out_tongue_closed_eyes: ");
 
   member.guild.channels.find("name", "welcome").send(" Hey everyone! Please welcome "+ member.toString()
