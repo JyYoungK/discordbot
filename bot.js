@@ -37,12 +37,8 @@ bot.on('message', message => {
 
 bot.on("guildMemberAdd", async member => {
   await member.send(" Welcome to Rose Garden "+ member.toString() +  " :heart_eyes:"
-   + ". First of all, there are a lot of things going on here. It's like vines and roses! :rose: " +
-   "In this channel you can witness people earning EXP, changing roles, playing custom games" +
-   ", becoming a VIP and you can do it too! PHEW :laughing: Well, I can answer all these questions for you! All you have to do is " +
-   "Type: `askbot: info` to seek help" + " in the 'lets-talk' channel. If you have any " +
- "other questions :thinking: , feel free to ask anyone or Admin! Okay enough talking, go ahead and invite your friends over and start gaming! " +
- "Don't forget to say hi and add me on League if you do play :) - `Chocolate Rose` See you around in the channel, have fun!!! :stuck_out_tongue_closed_eyes: ");
+   + ". First thing you should do is to go to `https://discord.gg/EJYywfY` to claim your role! It will be very simple to do it. " + "If you have any questions, ask `Chocolate Rose`! " +
+ " See you around in the channel, have fun!!! :stuck_out_tongue_closed_eyes: ");
 
   member.guild.channels.find("name", "welcome").send(" Hey everyone! Please welcome "+ member.toString()
    + " for joining our channel! It's nice to see you here. Have a good time! :) ")
