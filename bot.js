@@ -5,7 +5,20 @@ const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const PREFIX = "askbot: ";
 const setupCMD = "!roles"
-const roles = ["Testing", "S9 Iron", "S9 Bronze", "S9 Silver", "S9 Gold", "S9 Platinum", "S9 Diamond"];
+const roles = [
+  "Testing",
+  "S9 Iron",
+  "S9 Bronze",
+  "S9 Silver",
+  "S9 Gold",
+  "S9 Platinum",
+  "S9 Diamond",
+  "Top Main",
+  "Jungle Main",
+  "Mid Main",
+  "Bot Main",
+  "Support Main"
+];
 const reactions = ["💻"];
 bot.commands = new Discord.Collection();
 
@@ -84,9 +97,15 @@ bot.on("message", async message => {
 
     switch (args2[0].toLowerCase()) {
 
-      case "roles":
-           message.channel.send('Go to "service" and give yourself a reaction to appropriate position rank' ).then(msg => {msg.delete(60000)});
-           break;
+    case "roles":
+      message.channel
+        .send(
+          'Go to "service" channel and go to `claim-your-s9-rank` to claim your season 9 rank, go to `claim-your-position` to claim your role'
+        )
+        .then(msg => {
+          msg.delete(60000);
+        });
+      break;
 
       case "ask":
           if (args2[1]) message.channel.send(fortunes[Math.floor(Math.random() * fortunes.length)]);
