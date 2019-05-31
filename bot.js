@@ -7,12 +7,12 @@ const PREFIX = "askbot: ";
 const setupCMD = "!roles"
 const roles = [
   "Testing",
-  "S9 Iron Rose",
-  "S9 Bronze Rose",
-  "S9 Silver Rose",
-  "S9 Gold Rose",
-  "S9 Platinum Rose",
-  "S9 Diamond Rose",
+  "S9 Iron",
+  "S9 Bronze",
+  "S9 Silver",
+  "S9 Gold",
+  "S9 Platinum",
+  "S9 Diamond",
   "Top Main",
   "Jungle Main",
   "Mid Main",
