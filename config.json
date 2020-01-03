@@ -1,7 +1,5 @@
 module.exports = {
-  /**
-   * Instructions on how to get this: https://redd.it/40zgse
-   */
+
   yourID: "@374418803397754881",
 
   setupCMD: "!createrole",
