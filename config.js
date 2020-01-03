@@ -1,6 +1,10 @@
 module.exports = {
+  /**
+   * Instructions on how to get this: https://redd.it/40zgse
+   */
+  //yourID: "@374418803397754881",
 
-  setupCMD: "!createrole",
+  setupCMD: "createrole",
   /**
    * Delete the 'setupCMD' command after it is ran. Set to 'true' for the command message to be deleted
    */
@@ -67,5 +71,6 @@ module.exports = {
   /**
    * The link for the embed thumbnail if "embedThumbnail" is set to true
    */
-  embedThumbnailLink: ""
+  embedThumbnailLink: "",
 };
+
