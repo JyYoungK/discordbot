@@ -71,5 +71,5 @@ module.exports = {
   /**
    * The link for the embed thumbnail if "embedThumbnail" is set to true
    */
-  embedThumbnailLink: "",
+  embedThumbnailLink: ""
 };
