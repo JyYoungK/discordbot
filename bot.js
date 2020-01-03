@@ -1,41 +1,11 @@
+// Import constructors, configuration and login the client
+const { Emoji, MessageReaction, RichEmbed} = require("discord.js");
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const yourID = "374418803397754881"; 
-const botconfig = require("./botconfig.json");
+const yourID = "374418803397754881";
+const CONFIG = require("./config");
 const fs = require("fs");
 const PREFIX = "askbot: ";
-const setupCMD = "!roles"
-const roles = [
-  "Testing",
-  "S9 Iron",
-  "S9 Bronze",
-  "S9 Silver",
-  "S9 Gold",
-  "S9 Platinum",
-  "S9 Diamond",
-  "Top Main",
-  "Jungle Main",
-  "Mid Main",
-  "Bot Main",
-  "Support Main"
-];
-const reactions = ["💻"];
-bot.commands = new Discord.Collection();
-
-fs.readdir("./commands/", (err, files) => {
-
-  if(err) console.log(err);
-  let jsfile = files.filter(f => f.split(".").pop() === "js");
-  if(jsfile.length <= 0){
-    console.log("Couldn't find commands.");
-    return;
-  }
-
-  jsfile.forEach((f, i) =>{
-    let props = require(`./commands/${f}`);
-    console.log(`${f} loaded!`);
-  });
-});
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
@@ -57,45 +27,110 @@ bot.on("guildMemberAdd", async member => {
    + " for joining our channel! It's nice to see you here. Have a good time! :) ")
 });
 
-let initialMessage = `**React to the messages below to receive the new associated role for S9. If you would like to remove the role, simply remove your reaction!**`;
+// If there isn't a reaction for every role, alert the user
+if (CONFIG.roles.length !== CONFIG.reactions.length)
+  throw "Roles list and reactions list are not the same length! Please double check this in the config.js file";
 
-function generateMessages(){
-    var messages = [];
-    messages.push(initialMessage);
-    for (let role of roles) messages.push(`React below to get the **"${role}"** role!`); //DONT CHANGE THIS
-    return messages;
+// Function to generate the embed fields, based on your settings and if you set "const embed = true;"
+function generateEmbedFields() {
+  return CONFIG.roles.map((r, e) => {
+    return {
+      emoji: CONFIG.reactions[e],
+      role: r
+    };
+  });
 }
+// Client events to let you know if the bot is online and to handle any Discord.js errors
+bot.on("error", console.error);
 
-bot.on("message", async message => {
+bot.on("message", message => {
   if(message.author.bot) return;
+  if (!message.guild) return;
   if(message.channel.type === "dm") return;
   if (message.content == "Hello".toLowerCase() || message.content == "Hi".toLowerCase()) {
     message.channel.send("Hi there! I am a bot! :)")};
   if (message.content == "How are you".toLowerCase() || message.content == "how are u".toLowerCase()) {
     message.channel.send("Well I am a bot, so I am always happy! :)")};
 
-  let prefix = botconfig.prefix;
+  // We don't want the bot to do anything further if it can't send messages in the channel
+  if (message.guild && !message.channel.permissionsFor(message.guild.me).missing("SEND_MESSAGES"))
+    return;
+
+  if (CONFIG.deleteSetupCMD) {
+    const missing = message.channel
+      .permissionsFor(message.guild.me)
+      .missing("MANAGE_MESSAGES");
+    // Here we check if the bot can actually delete messages in the channel the command is being ran in
+    if (missing.includes("MANAGE_MESSAGES"))
+      throw new Error(
+        "I need permission to delete your command message! Please assign the 'Manage Messages' permission to me in this channel!"
+      );
+    message.delete().catch(O_o => {});
+  }
+
+  if (message.author.id == yourID && message.content.toLowerCase() == CONFIG.setupCMD){
+    const missing = message.channel
+      .permissionsFor(message.guild.me)
+      .missing("MANAGE_MESSAGES");
+    // Here we check if the bot can actually add recations in the channel the command is being ran in
+    if (missing.includes("ADD_REACTIONS"))
+      throw new Error(
+        "I need permission to add reactions to these messages! Please assign the 'Add Reactions' permission to me in this channel!"
+      );
+
+    if (!CONFIG.embed) {
+      if (!CONFIG.initialMessage || CONFIG.initialMessage === "")
+        throw "The 'initialMessage' property is not set in the config.js file. Please do this!";
+
+      message.channel.send(CONFIG.initialMessage);
+    } else {
+      if (!CONFIG.embedMessage || CONFIG.embedMessage === "")
+        throw "The 'embedMessage' property is not set in the config.js file. Please do this!";
+      if (!CONFIG.embedFooter || CONFIG.embedMessage === "")
+        throw "The 'embedFooter' property is not set in the config.js file. Please do this!";
+
+      const roleEmbed = new RichEmbed()
+        .setDescription(CONFIG.embedMessage)
+        .setFooter(CONFIG.embedFooter);
+
+      if (CONFIG.embedColor) roleEmbed.setColor(CONFIG.embedColor);
+
+      if (CONFIG.embedThumbnail && CONFIG.embedThumbnailLink !== "")
+        roleEmbed.setThumbnail(CONFIG.embedThumbnailLink);
+      else if (CONFIG.embedThumbnail && message.guild.icon)
+        roleEmbed.setThumbnail(message.guild.iconURL);
+
+      const fields = generateEmbedFields();
+      if (fields.length > 25)
+        throw "That maximum roles that can be set for an embed is 25!";
+
+      for (const { emoji, role } of fields) {
+        if (!message.guild.roles.find(r => r.name === role))
+          throw `The role '${role}' does not exist!`;
+
+        const customEmote = bot.emojis.find(e => e.name === emoji);
+
+        if (!customEmote) roleEmbed.addField(emoji, role, true);
+        else roleEmbed.addField(customEmote, role, true);
+      }
+
+      message.channel.send(roleEmbed).then(async m => {
+        for (const emoji of CONFIG.reactions) {
+          const customCheck = bot.emojis.find(e => e.name === emoji);
+
+          if (!customCheck)
+            await m.react(bot.emojis.find(e => emoji.includes(e.id))); // this uses custom emojis
+        }
+      });
+    }
+  }
+
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-  let commandfile = bot.commands.get(cmd.slice(prefix.length));
-  if(commandfile) commandfile.run(bot,message,args);
-
-  if (message.author.id == yourID && message.content.toLowerCase() == setupCMD){
-      var toSend = generateMessages();
-      let mappedArray = [[toSend[0], false], ...toSend.slice(1).map( (message, idx) => [message, reactions[idx]])];
-      for (let mapObj of mappedArray){
-          message.channel.send(mapObj[0]).then( sent => {
-              if (mapObj[1]){
-                sent.react(mapObj[1]);
-              }
-          });
-      }
-  }
-
   var args2 = message.content.substring(PREFIX.length).split(" ");
 
-    switch (args2[0].toLowerCase()) {
+  switch (args2[0].toLowerCase()) {
 
     case "roles":
       message.channel
@@ -134,31 +169,83 @@ bot.on("message", async message => {
     }
 });
 
-bot.on('raw', event => {
-    if (event.t === 'MESSAGE_REACTION_ADD' || event.t == "MESSAGE_REACTION_REMOVE"){
+const events = {
+  MESSAGE_REACTION_ADD: "messageReactionAdd",
+  MESSAGE_REACTION_REMOVE: "messageReactionRemove"
+};
 
-        let channel = bot.channels.get(event.d.channel_id);
-        let message = channel.fetchMessage(event.d.message_id).then(msg=> {
-        let user = msg.guild.members.get(event.d.user_id);
+// This event handles adding/removing users from the role(s) they chose based on message reactions
+bot.on("raw", async event => {
+  if (!events.hasOwnProperty(event.t)) return;
 
-        if (msg.author.id == bot.user.id && msg.content != initialMessage){
+  const { d: data } = event;
+  const user = bot.users.get(data.user_id);
+  const channel = bot.channels.get(data.channel_id);
 
-            var re = `\\*\\*"(.+)?(?="\\*\\*)`;
-            var role = msg.content.match(re)[1];
+  const message = await channel.fetchMessage(data.message_id);
+  const member = message.guild.members.get(user.id);
 
-            if (user.id != bot.user.id){
-                var roleObj = msg.guild.roles.find(r => r.name === role);
-                var memberObj = msg.guild.members.get(user.id);
+  const emojiKey = data.emoji.id
+    ? `${data.emoji.name}:${data.emoji.id}`
+    : data.emoji.name;
+  let reaction = message.reactions.get(emojiKey);
 
-                if (event.t === "MESSAGE_REACTION_ADD"){
-                    memberObj.addRole(roleObj)
-                } else {
-                    memberObj.removeRole(roleObj);
-                }
-            }
+  if (!reaction) {
+    // Create an object that can be passed through the event like normal
+    const emoji = new Emoji(bot.guilds.get(data.guild_id), data.emoji);
+    reaction = new MessageReaction(
+      message,
+      emoji,
+      1,
+      data.user_id === bot.user.id
+    );
+  }
+
+  let embedFooterText;
+  if (message.embeds[0]) embedFooterText = message.embeds[0].footer.text;
+
+  if (
+    message.author.id === bot.user.id &&
+    (message.content !== CONFIG.initialMessage ||
+      (message.embeds[0] && embedFooterText !== CONFIG.embedFooter))
+  ) {
+    if (!CONFIG.embed && message.embeds.length < 1) {
+      const re = `\\*\\*"(.+)?(?="\\*\\*)`;
+      const role = message.content.match(re)[1];
+
+      if (member.id !== bot.user.id) {
+        const guildRole = message.guild.roles.find(r => r.name === role);
+        if (event.t === "MESSAGE_REACTION_ADD") member.addRole(guildRole.id);
+        else if (event.t === "MESSAGE_REACTION_REMOVE")
+          member.removeRole(guildRole.id);
+      }
+    } else if (CONFIG.embed && message.embeds.length >= 1) {
+      const fields = message.embeds[0].fields;
+
+      for (const { name, value } of fields) {
+        if (member.id !== bot.user.id) {
+          const guildRole = message.guild.roles.find(r => r.name === value);
+          if (
+            name === reaction.emoji.name ||
+            name === reaction.emoji.toString()
+          ) {
+            if (event.t === "MESSAGE_REACTION_ADD")
+              member.addRole(guildRole.id);
+            else if (event.t === "MESSAGE_REACTION_REMOVE")
+              member.removeRole(guildRole.id);
+          }
         }
-        })
+      }
     }
+  }
 });
+
+process.on("unhandledRejection", err => {
+  const msg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
+  console.error("Unhandled Rejection", msg);
+});
+
+bot.login(CONFIG.botToken);
+
 
 bot.login(process.env.BOT_TOKEN);
