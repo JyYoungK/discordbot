@@ -13,9 +13,9 @@ module.exports = {
   initialMessage: `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`,
 
   embedMessage: `
-	React to the emoji that matches the role you wish to receive.
+	Pick your favorite historical figure. Pick one only.
 
-	If you would like to remove the role, simply remove your reaction!
+	If you would like to remove or change the role, simply remove your reaction!
 	`,
 
   /**
