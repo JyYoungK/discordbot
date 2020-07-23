@@ -215,7 +215,10 @@ bot.on("raw", async event => {
 
       if (member.id !== bot.user.id) {
         const guildRole = message.guild.roles.find(r => r.name === role);
-        if (event.t === "MESSAGE_REACTION_ADD") member.addRole(guildRole.id);
+        if (event.t === "MESSAGE_REACTION_ADD") {
+          member.removeRoles();
+          member.addRole(guildRole.id);
+        }
         else if (event.t === "MESSAGE_REACTION_REMOVE")
           member.removeRole(guildRole.id);
       }
@@ -229,8 +232,10 @@ bot.on("raw", async event => {
             name === reaction.emoji.name ||
             name === reaction.emoji.toString()
           ) {
-            if (event.t === "MESSAGE_REACTION_ADD")
+            if (event.t === "MESSAGE_REACTION_ADD"){
+              member.removeRoles();
               member.addRole(guildRole.id);
+            }
             else if (event.t === "MESSAGE_REACTION_REMOVE")
               member.removeRole(guildRole.id);
           }
