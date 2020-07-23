@@ -24,30 +24,43 @@ module.exports = {
   embedFooter: "Role Reactions",
 
   roles: [
-    "Rosa 'Juliet'",
-    "Rosa 'Queen Elizabeth'",
-    "Rosa 'Veilchenblau'",
-    "Rosa 'Blue Moon'",
-    "Rosa 'Viridiflora'",
-    "Rosa 'Sunsprite'",
-    "Rosa 'Early Grey'",
-    "Rosa 'Macchiato'",
-    "Rosa 'Halfeti'"
+	"Abraham Lincoln",
+	"Ada Lovelace",
+	"Adam Smith",
+	"Adolf Hitler",
+	"Albert Einstein",
+	"Alexander Hamilton"
+//     "Rosa 'Juliet'",
+//     "Rosa 'Queen Elizabeth'",
+//     "Rosa 'Veilchenblau'",
+//     "Rosa 'Blue Moon'",
+//     "Rosa 'Viridiflora'",
+//     "Rosa 'Sunsprite'",
+//     "Rosa 'Early Grey'",
+//     "Rosa 'Macchiato'",
+//     "Rosa 'Halfeti'"
   ],
 
   /**
    * For custom emojis, provide the name of the emoji
    */
   reactions: [
-    "<:Challenger:657740931587375105>",
-    "<:Grandmaster:657740930664890371>",
-    "<:Master:657740931088384038>",
-    "<:Diamond:657740931562340353>",
-    "<:Platinum:657740930866217016>",
-    "<:Gold:657740931453419540>",
-    "<:Silver:657740930723610660>",
-    "<:Bronze:657740931499294730>",
-    "<:Iron:657740931159556116>"
+       "<:Abraham:735895333288017933>",
+       "<:Ada:735895333455790092>",
+       "<:Adam:735895333288280164>",
+       "<:Adolf:735895333460246528>",
+       "<:Alexander:735895333631950898>",
+       "<:Albert:735895333275697223>"
+
+//     "<:Challenger:657740931587375105>",
+//     "<:Grandmaster:657740930664890371>",
+//     "<:Master:657740931088384038>",
+//     "<:Diamond:657740931562340353>",
+//     "<:Platinum:657740930866217016>",
+//     "<:Gold:657740931453419540>",
+//     "<:Silver:657740930723610660>",
+//     "<:Bronze:657740931499294730>",
+//     "<:Iron:657740931159556116>"
   ],
 
   /**
