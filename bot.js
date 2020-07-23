@@ -219,6 +219,7 @@ bot.on("raw", async event => {
         const guildRole = message.guild.roles.find(r => r.name === role);
         if (event.t === "MESSAGE_REACTION_ADD") {
           member.removeRole(member.guild.roles.find(role => role.name === "Citizen"));
+          member.addRole(member.guild.roles.find(role => role.name === "Potential Talent"));
           member.addRole(guildRole.id);
         }
         else if (event.t === "MESSAGE_REACTION_REMOVE")
