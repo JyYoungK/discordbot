@@ -26,7 +26,6 @@ module.exports = {
   roles: [
 	"Abraham Lincoln",
 	"Adolf Hitler",
-	"Alexander Hamilton",
 	"Albert Einstein",
 	  "Benjamin Franklin",
 	  "Charles Darwin",
@@ -39,7 +38,6 @@ module.exports = {
 	  "Leonardo da Vinci",
 	  "Ludwig Van Beethoven",
 	  "Mahatma Gandhi",
-	  "Marco Polo",
 	  "Martin Luther King Jr",
 	  "Napoleon Bonaparte",
 	  "Thomas Edison",
@@ -62,7 +60,6 @@ module.exports = {
   reactions: [
        "<:Abraham:735895333288017933>",
        "<:Adolf:735895333460246528>",
-       "<:Alexander:735895333631950898>",
        "<:Albert:735895333275697223>",
        "<:Benjamin:735895333267177512>",
        "<:Charles:735895333099405313>",
@@ -75,7 +72,6 @@ module.exports = {
 	  "<:Leonardo:735895333522898964>",
 	  "<:Ludwig:735895333426692097>",
 	  "<:Mahatma:735895333602852937>",
-	  "<:Marco:735895333799854120>",
 	  "<:Martin:735895333636145295>",
 	  "<:Napoleon:735895333711642644>",
 	  "<:Thomas:735895333766168619>",
