@@ -22,8 +22,9 @@ bot.on("guildMemberAdd", async member => {
   await member.send(" Welcome to Rose Garden :rose: "+ member.toString() +  " :heart_eyes:"
    + ". First thing you should do is to go to `https://discord.gg/MvMQP7` to claim your role! It will be very simple to do it. " + "If you have any questions, ask 'Chocolate Rose'! " +
  " See you around in the channel, have fun!!! :stuck_out_tongue_closed_eyes: ");
-  member.addRole("Citizen");
-  member.addRole("Member Since 2020");
+  
+  member.addRole(member.guild.roles.find(role => role.name === "Citizen"));
+  member.addRole(member.guild.roles.find(role => role.name === "Member Since 2020"));
   member.guild.channels.find("name", "welcome").send(" Hey everyone! Please welcome "+ member.toString()
    + " for joining our channel! It's nice to see you here. Have a good time! :) ")
 });
@@ -217,7 +218,7 @@ bot.on("raw", async event => {
       if (member.id !== bot.user.id) {
         const guildRole = message.guild.roles.find(r => r.name === role);
         if (event.t === "MESSAGE_REACTION_ADD") {
-          member.removeRole("Citizen");
+          member.removeRole(member.guild.roles.find(role => role.name === "Citizen"));
           member.addRole(guildRole.id);
         }
         else if (event.t === "MESSAGE_REACTION_REMOVE")
@@ -234,7 +235,7 @@ bot.on("raw", async event => {
             name === reaction.emoji.toString()
           ) {
             if (event.t === "MESSAGE_REACTION_ADD"){
-              member.removeRole("Citizen");
+              member.removeRole(member.guild.roles.find(role => role.name === "Citizen"));
               member.addRole(guildRole.id);
             }
             else if (event.t === "MESSAGE_REACTION_REMOVE")
