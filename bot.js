@@ -216,7 +216,6 @@ bot.on("raw", async event => {
       if (member.id !== bot.user.id) {
         const guildRole = message.guild.roles.find(r => r.name === role);
         if (event.t === "MESSAGE_REACTION_ADD") {
-          member.removeRoles();
           member.addRole(guildRole.id);
         }
         else if (event.t === "MESSAGE_REACTION_REMOVE")
@@ -233,7 +232,6 @@ bot.on("raw", async event => {
             name === reaction.emoji.toString()
           ) {
             if (event.t === "MESSAGE_REACTION_ADD"){
-              member.removeRoles();
               member.addRole(guildRole.id);
             }
             else if (event.t === "MESSAGE_REACTION_REMOVE")
